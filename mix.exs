@@ -24,7 +24,8 @@ defmodule FacebookSignedRequest.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
@@ -38,7 +39,8 @@ defmodule FacebookSignedRequest.Mixfile do
     [
       licenses: ["MIT"],
       keywords: ["Elixir", "Facebook", "Signed Request", "Facebook SDK"],
-      maintainers: ["Gerald Urschitz"]
+      maintainers: ["Gerald Urschitz"],
+      links: %{"GitHub" => "https://github.com/gurschitz/facebook_signed_request"}
     ]
   end
 end

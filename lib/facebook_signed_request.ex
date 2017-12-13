@@ -19,7 +19,7 @@ defmodule FacebookSignedRequest do
     {signature, payload} = split_signed_request(signed_request)
 
     case check_signature(signature, payload, app_secret) do
-      true -> payload |> Base.decode64! |> Poison.decode!
+      true -> payload |> Base.decode64!(padding: false) |> Poison.decode!
       false -> {:error, "Signed Request is invalid!"}
       other -> other
     end
@@ -57,9 +57,7 @@ defmodule FacebookSignedRequest do
   defp prepare_base64_url(str) do
     mode = str |> String.length |> rem(4)
     equal_signs = "=" |> String.duplicate(4 - mode)
-    str = "#{str}#{equal_signs}"
-    
-    str 
+    str <> equal_signs 
     |> String.replace("-","+")
     |> String.replace("_","/")
   end
